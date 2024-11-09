@@ -1,15 +1,15 @@
 export type WeatherObject = {
-  location: string,
-  temperature: number,
-  feelsLike: number,
-  seaLevel: number,
-  windSpeed: number,
-  humidity: number,
-  conditionName: string,
-  condition: JSX.Element,
-  sunrise: string,
-  sunset: string,
-}
+  location: string;
+  temperature: number;
+  feelsLike: number;
+  seaLevel: number;
+  windSpeed: number;
+  humidity: number;
+  conditionName: string;
+  condition: JSX.Element;
+  sunrise: string;
+  sunset: string;
+};
 
 export interface WeatherResponse {
   name: string;

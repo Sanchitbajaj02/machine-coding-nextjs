@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useCallback } from 'react';
-import dayjs from 'dayjs';
-import { Cloud, Sun, Haze, CloudRain, CloudFog } from 'lucide-react';
-import { WeatherObject, WeatherResponse } from '@/types/weather';
+import { useState, useCallback } from "react";
+import dayjs from "dayjs";
+import { Cloud, Sun, Haze, CloudRain, CloudFog } from "lucide-react";
+import { WeatherObject, WeatherResponse } from "@/types/weather";
 
 export const useWeather = () => {
   const [weatherData, setWeatherData] = useState<WeatherObject | null>(null);
@@ -35,8 +35,8 @@ export const useWeather = () => {
       humidity: weatherData?.main?.humidity,
       conditionName: weatherData?.weather[0]?.main,
       condition: getWeatherIcon(weatherData?.weather[0]?.main),
-      sunrise: dayjs(new Date(weatherData?.sys?.sunrise * 1000)).format('hh:mm:ss A'),
-      sunset: dayjs(new Date(weatherData?.sys?.sunset * 1000)).format('hh:mm:ss A')
+      sunrise: dayjs(new Date(weatherData?.sys?.sunrise * 1000)).format("hh:mm:ss A"),
+      sunset: dayjs(new Date(weatherData?.sys?.sunset * 1000)).format("hh:mm:ss A"),
     };
 
     setWeatherData(weatherObject);
@@ -44,6 +44,6 @@ export const useWeather = () => {
 
   return {
     weatherData,
-    parseWeatherData
+    parseWeatherData,
   };
 };

@@ -13,3 +13,19 @@ export const getWeather = async (city: string) => {
     console.log(error);
   }
 };
+
+export const getNewsData = async () => {
+  const url = "https://ok.surf/api/v1/cors/news-feed";
+
+  try {
+    const { data: apiResponse } = await axios.get(url, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    return apiResponse;
+  } catch (error) {
+    console.log(error);
+  }
+};

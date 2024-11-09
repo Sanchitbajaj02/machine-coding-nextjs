@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function AnalyticsPage() {
-  return (
-    <div>AnalyticsPage</div>
-  )
+  return <div>AnalyticsPage</div>;
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState, useEffect, Suspense } from "react";
+import { useCallback, useState, useEffect } from "react";
 import WeatherCard from "@/components/core/WeatherCard";
 import NewsCard from "@/components/core/NewsCard";
 
@@ -47,16 +47,16 @@ export default function WeatherNewsPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [newsData]);
+  }, []);
 
   useEffect(() => {
     fetchNews();
 
     return () => setNewsData([]);
-  }, []);
+  }, [fetchNews]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen p-8">
       <div className="mx-auto max-w-screen-xl">
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-bold">Master Ji Live Dashboard</h1>

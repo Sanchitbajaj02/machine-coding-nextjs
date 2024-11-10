@@ -6,18 +6,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
+} from "@/components/ui/pagination";
 
 import { NewsObject } from "@/types/news";
 
-const ITEMS_PER_PAGE = 4
+const ITEMS_PER_PAGE = 4;
 
-const NewsCardItem = ({ news, isGridView }: { news: NewsObject, isGridView: boolean }) => {
+const NewsCardItem = ({ news, isGridView }: { news: NewsObject; isGridView: boolean }) => {
   return (
     <Card className="rounded p-4">
       <div className="space-y-4">
@@ -26,7 +24,7 @@ const NewsCardItem = ({ news, isGridView }: { news: NewsObject, isGridView: bool
           alt={news?.title}
           width={600}
           height={600}
-          className={`rounded ${!isGridView && 'w-full h-64 object-cover'}`}
+          className={`rounded ${!isGridView && "w-full h-64 object-cover"}`}
         />
         <CardTitle className="text-xl font-bold">{news?.title}</CardTitle>
 
@@ -46,11 +44,17 @@ const NewsCardItem = ({ news, isGridView }: { news: NewsObject, isGridView: bool
         </Link>
       </div>
     </Card>
-  )
-}
+  );
+};
 
-export default function NewsCard({ newsData, isGridView }: { newsData: NewsObject[], isGridView: boolean }) {
-  const [currentPage, setCurrentPage] = useState<number>(1)
+export default function NewsCard({
+  newsData,
+  isGridView,
+}: {
+  newsData: NewsObject[];
+  isGridView: boolean;
+}) {
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const totalPages: number = Math.ceil(newsData.length / ITEMS_PER_PAGE);
   const startIndex: number = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -66,9 +70,7 @@ export default function NewsCard({ newsData, isGridView }: { newsData: NewsObjec
       <section className={`grid grid-cols-1 gap-2 ${isGridView && "md:grid-cols-2"}`}>
         {currentNews &&
           currentNews.map((news: NewsObject, idx: number) => {
-            return (
-              <NewsCardItem key={idx} news={news} isGridView={isGridView} />
-            );
+            return <NewsCardItem key={idx} news={news} isGridView={isGridView} />;
           })}
       </section>
 
@@ -84,7 +86,9 @@ export default function NewsCard({ newsData, isGridView }: { newsData: NewsObjec
           <PaginationItem>
             <PaginationNext
               onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-              className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+              className={
+                currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"
+              }
             />
           </PaginationItem>
         </PaginationContent>

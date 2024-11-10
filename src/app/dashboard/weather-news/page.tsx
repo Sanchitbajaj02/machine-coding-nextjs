@@ -21,7 +21,7 @@ export default function WeatherNewsPage() {
   const [currentNewsView, setCurrentNewsView] = useState<boolean>(true);
   const [newsData, setNewsData] = useState<NewsObject[]>([]);
 
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleSearchSubmit = useCallback(
     async (formData: FormData) => {
@@ -36,16 +36,16 @@ export default function WeatherNewsPage() {
 
   const fetchNews = useCallback(async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await getNewsData();
 
       if (response) {
         setNewsData(response["World"] || []);
       }
     } catch (error) {
-      console.error('Failed to fetch news:', error);
+      console.error("Failed to fetch news:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }, [newsData]);
 
@@ -107,7 +107,6 @@ export default function WeatherNewsPage() {
                 </Label>
               </div>
             </CardHeader>
-
 
             {isLoading ? (
               <CardContent className="flex flex-row justify-center items-center">

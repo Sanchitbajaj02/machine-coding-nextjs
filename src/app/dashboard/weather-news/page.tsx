@@ -62,8 +62,8 @@ export default function WeatherNewsPage() {
           <h1 className="text-3xl font-bold">Master Ji Live Dashboard</h1>
         </header>
 
-        <div className="grid gap-8 md:grid-flow-col">
-          <Card>
+        <div className="grid gap-8 md:grid-cols-3">
+          <Card className="max-h-[90vh]">
             <CardHeader>
               <CardTitle>How's the weather today?</CardTitle>
             </CardHeader>
@@ -84,7 +84,7 @@ export default function WeatherNewsPage() {
             <CardContent>{weatherData && <WeatherCard weatherData={weatherData} />}</CardContent>
           </Card>
 
-          <Card>
+          <Card className="col-span-2">
             <CardHeader className="xl:flex-row items-center justify-between gap-2">
               <CardTitle>What's happening around the world?</CardTitle>
 

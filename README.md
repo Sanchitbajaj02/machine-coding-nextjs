@@ -28,6 +28,10 @@ Install the dependencies using the following command:
 npm install
 ```
 
+## Environment Variables
+
+I have provided a sample `.env.example` file. Make a duplicate of it and rename to `.env.local`. After that, add your API keys in it
+
 ## Run the project
 
 Run the development server using the following command:

@@ -21,6 +21,8 @@ export default function WeatherNewsPage() {
   const [currentNewsView, setCurrentNewsView] = useState<boolean>(true);
   const [newsData, setNewsData] = useState<NewsObject[]>([]);
 
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+
   const handleSearchSubmit = useCallback(
     async (formData: FormData) => {
       const city = formData.get("city") as string;
@@ -32,21 +34,26 @@ export default function WeatherNewsPage() {
     [parseWeatherData],
   );
 
-  const getNews = useCallback(async () => {
-    const response = await getNewsData();
+  const fetchNews = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      const response = await getNewsData();
 
-    if (response) {
-      setNewsData(response["World"]);
+      if (response) {
+        setNewsData(response["World"] || []);
+      }
+    } catch (error) {
+      console.error('Failed to fetch news:', error);
+    } finally {
+      setIsLoading(false)
     }
   }, [newsData]);
 
   useEffect(() => {
-    getNews();
+    fetchNews();
 
-    return () => {
-      setNewsData([]);
-    };
-  }, []);
+    return () => setNewsData([]);
+  }, [fetchNews]);
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -101,11 +108,18 @@ export default function WeatherNewsPage() {
               </div>
             </CardHeader>
 
-            <CardContent>
-              <Suspense fallback={<Loader2/>}>
-              {newsData && newsData.length > 0 && <NewsCard newsData={newsData} isGridView={currentNewsView} />}
-              </Suspense>
-            </CardContent>
+
+            {isLoading ? (
+              <CardContent className="flex flex-row justify-center items-center">
+                <Loader2 size={40} className="animate-spin" />
+              </CardContent>
+            ) : (
+              <CardContent>
+                {newsData && newsData.length > 0 && (
+                  <NewsCard newsData={newsData} isGridView={currentNewsView} />
+                )}
+              </CardContent>
+            )}
           </Card>
         </div>
       </div>

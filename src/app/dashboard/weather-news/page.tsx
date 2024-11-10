@@ -53,7 +53,7 @@ export default function WeatherNewsPage() {
     fetchNews();
 
     return () => setNewsData([]);
-  }, [fetchNews]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">

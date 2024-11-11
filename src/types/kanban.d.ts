@@ -11,3 +11,9 @@ export interface Column {
   title: string;
   color: string;
 }
+
+export interface KanbanColumnProps {
+  column: Column;
+  tasks: Task[];
+  provided: any;
+}

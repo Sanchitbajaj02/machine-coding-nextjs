@@ -5,12 +5,8 @@ import { Task, Column } from "@/types/kanban";
 import { Draggable } from "@hello-pangea/dnd";
 import dayjs from "dayjs";
 import { Calendar } from "lucide-react";
+import { KanbanColumnProps } from "@/types/kanban";
 
-interface KanbanColumnProps {
-  column: Column;
-  tasks: Task[];
-  provided: any;
-}
 
 export default function KanbanColumn({ column, tasks, provided }: KanbanColumnProps) {
   return (

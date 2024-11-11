@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useState, useEffect } from "react";
-import WeatherCard from "@/components/core/WeatherCard";
-import NewsCard from "@/components/core/NewsCard";
+import WeatherCard from "@/components/weather-news/WeatherCard";
+import NewsCard from "@/components/weather-news/NewsCard";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -56,72 +56,74 @@ export default function WeatherNewsPage() {
   }, [fetchNews]);
 
   return (
-    <div className="container mx-auto p-8 bg-gray-100">
-      <div className="mx-auto max-w-screen-xl">
-        <header className="mb-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight">Master Ji Live Dashboard</h1>
-        </header>
+    <main className="bg-gray-50">
+      <div className="container mx-auto p-8">
+        <div className="mx-auto max-w-screen-xl">
+          <header className="mb-8 text-center">
+            <h1 className="text-4xl font-bold tracking-tight">Master Ji Live Dashboard</h1>
+          </header>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          <Card className="max-h-[90vh]">
-            <CardHeader>
-              <CardTitle>How's the weather today?</CardTitle>
-            </CardHeader>
+          <div className="grid gap-8 md:grid-cols-3">
+            <Card className="max-h-[90vh]">
+              <CardHeader>
+                <CardTitle>How's the weather today?</CardTitle>
+              </CardHeader>
 
-            <CardContent>
-              <form className="flex w-full items-center gap-4" action={handleSearchSubmit}>
-                <Input
-                  type="search"
-                  placeholder="Search..."
-                  className="flex-1"
-                  name="city"
-                  aria-label="Enter city name"
-                />
-                <Button type="submit">Get Weather</Button>
-              </form>
-            </CardContent>
-
-            <CardContent>{weatherData && <WeatherCard weatherData={weatherData} />}</CardContent>
-          </Card>
-
-          <Card className="col-span-2">
-            <CardHeader className="xl:flex-row items-center justify-between gap-2">
-              <CardTitle>What's happening around the world?</CardTitle>
-
-              <div className="flex space-x-2">
-                <Label htmlFor="news-grid-toggle" className="flex items-center">
-                  <List className="mr-2 w-4 h-4" />
-                  <span className="text-lg font-medium">List view</span>
-                </Label>
-
-                <Switch
-                  id="news-grid-toggle"
-                  className=""
-                  checked={currentNewsView}
-                  onCheckedChange={(checked) => setCurrentNewsView(checked)}
-                />
-
-                <Label htmlFor="news-grid-toggle" className="flex items-center">
-                  <Grid3X3 className="mr-2 w-4 h-4" />
-                  <span className="text-lg font-medium">Grid view</span>
-                </Label>
-              </div>
-            </CardHeader>
-
-            {isLoading ? (
-              <CardContent className="flex flex-row justify-center items-center">
-                <Loader2 size={40} className="animate-spin" />
-              </CardContent>
-            ) : (
               <CardContent>
-                {newsData && newsData.length > 0 && (
-                  <NewsCard newsData={newsData} isGridView={currentNewsView} />
-                )}
+                <form className="flex w-full items-center gap-4" action={handleSearchSubmit}>
+                  <Input
+                    type="search"
+                    placeholder="Search..."
+                    className="flex-1"
+                    name="city"
+                    aria-label="Enter city name"
+                  />
+                  <Button type="submit">Get Weather</Button>
+                </form>
               </CardContent>
-            )}
-          </Card>
+
+              <CardContent>{weatherData && <WeatherCard weatherData={weatherData} />}</CardContent>
+            </Card>
+
+            <Card className="col-span-2">
+              <CardHeader className="xl:flex-row items-center justify-between gap-2">
+                <CardTitle>What's happening around the world?</CardTitle>
+
+                <div className="flex space-x-2">
+                  <Label htmlFor="news-grid-toggle" className="flex items-center">
+                    <List className="mr-2 w-4 h-4" />
+                    <span className="text-lg font-medium">List view</span>
+                  </Label>
+
+                  <Switch
+                    id="news-grid-toggle"
+                    className=""
+                    checked={currentNewsView}
+                    onCheckedChange={(checked) => setCurrentNewsView(checked)}
+                  />
+
+                  <Label htmlFor="news-grid-toggle" className="flex items-center">
+                    <Grid3X3 className="mr-2 w-4 h-4" />
+                    <span className="text-lg font-medium">Grid view</span>
+                  </Label>
+                </div>
+              </CardHeader>
+
+              {isLoading ? (
+                <CardContent className="flex flex-row justify-center items-center">
+                  <Loader2 size={40} className="animate-spin" />
+                </CardContent>
+              ) : (
+                <CardContent>
+                  {newsData && newsData.length > 0 && (
+                    <NewsCard newsData={newsData} isGridView={currentNewsView} />
+                  )}
+                </CardContent>
+              )}
+            </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

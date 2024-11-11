@@ -7,7 +7,6 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  TableFooter
 } from "@/components/ui/table"
 
 import { TableData } from '@/types/analytics'
@@ -15,7 +14,7 @@ import { TableData } from '@/types/analytics'
 export default function AnalyticsDashboard({ tableData }: { tableData: TableData[] }) {
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableCaption>A list of users</TableCaption>
       <TableHeader>
         <TableRow className='font-medium'>
           <TableHead>First Name</TableHead>

@@ -1,22 +1,20 @@
-import React from "react";
+"use client"
+import { useEffect, useState } from "react";
 import AnalyticsDashboard from "@/components/analytics/AnalyticsDashboard";
 import { TableData } from "@/types/analytics";
 import { LineChart } from "@/components/analytics/LineChart";
 import { BarChart } from "@/components/analytics/BarChart";
+import { SearchBar } from "@/components/analytics/Searchbar";
+import { searchUser } from "./action";
 
-export default async function AnalyticsPage() {
+export default function AnalyticsPage() {
+  const [tableData, setTableData] = useState<TableData[]>([])
 
-  const apiResponse = await fetch('https://dummyjson.com/users')
-
-  if (!apiResponse.ok) {
-    return (
-      <>
-        <h1>No data found</h1>
-      </>
-    )
-  }
-
-  let tableData: { users: TableData[] } = await apiResponse.json()
+  useEffect(() => {
+    fetch('https://dummyjson.com/users').then((resp) => resp.json()).then((data) => {
+      setTableData(data?.users)
+    })
+  }, [])
 
   return (
     <div className="container mx-auto p-8 bg-white">
@@ -25,12 +23,14 @@ export default async function AnalyticsPage() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 my-8">
-        <LineChart tableData={tableData?.users} />
-        <BarChart tableData={tableData?.users} />
+        <LineChart tableData={tableData} />
+        <BarChart tableData={tableData} />
       </div>
 
-      {/* {JSON.stringify(dummyData)} */}
-      <AnalyticsDashboard tableData={tableData?.users} />
+      <div className="space-y-4">
+        <SearchBar setTableData={setTableData} searchUser={searchUser} />
+        <AnalyticsDashboard tableData={tableData} />
+      </div>
     </div>
   );
 }

@@ -56,10 +56,10 @@ export default function WeatherNewsPage() {
   }, [fetchNews]);
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="container mx-auto p-8 bg-gray-100">
       <div className="mx-auto max-w-screen-xl">
         <header className="mb-8 text-center">
-          <h1 className="text-3xl font-bold">Master Ji Live Dashboard</h1>
+          <h1 className="text-4xl font-bold tracking-tight">Master Ji Live Dashboard</h1>
         </header>
 
         <div className="grid gap-8 md:grid-cols-3">

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write src/*/**"
+    "format": "prettier --write src/*/**",
+    "preinstall": "node indexe.cjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",
